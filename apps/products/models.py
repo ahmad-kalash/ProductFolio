@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 from django.db import models
+from django.urls import reverse_lazy
 
 
 class ProductOrigin(models.Model):
@@ -65,3 +66,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name[:50]
+
+    def get_absolute_url(self):
+        return reverse_lazy('products:detail', kwargs={'slug': self.slug})

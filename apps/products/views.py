@@ -1,6 +1,8 @@
 # Copyright (c) 2020 by Abdullah Alnuaimi
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+from django.views.generic import DetailView
+
 from django_filters.views import FilterView
 
 from .filters import Product, ProductFilter
@@ -23,6 +25,11 @@ class ProductListView(FilterView):
             context['querystring'] = query_dect.urlencode()
             # print(query_dect.urlencode())
         return context
+
+
+class ProductDetailView(DetailView):
+    model = Product
+    context_object_name = 'product'
 
 
 # Resources:
