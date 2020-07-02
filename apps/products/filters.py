@@ -3,7 +3,13 @@
 
 from django import forms
 
-from django_filters import FilterSet, ModelMultipleChoiceFilter, RangeFilter
+from django_filters import (
+    ChoiceFilter,
+    FilterSet,
+    ModelMultipleChoiceFilter,
+    RangeFilter
+)
+
 from django_filters.widgets import RangeWidget
 
 from .models import (
@@ -26,6 +32,14 @@ class CustomRangeWidget(RangeWidget):
 
 
 class ProductFilter(FilterSet):
+
+    CHOICES = (
+        ('descending', 'Descending'),
+        ('ascending', 'Ascending'),
+        ('price_low_high', 'Price: Low to High'),
+        ('price_high_low', 'Price: High to Low'),
+    )
+
     price = RangeFilter(
         field_name='price',
         widget=CustomRangeWidget(
@@ -66,12 +80,30 @@ class ProductFilter(FilterSet):
         widget=forms.CheckboxSelectMultiple,
     )
 
+    ordering = ChoiceFilter(label='Sort By', choices=CHOICES, method='filter_by_order')
+
+
     class Meta:
         model = Product
         exclude = ['slug', 'description', 'image', 'old_price', 'updated_at', 'created_at']
+
+
+    def filter_by_order(self, queryset, name, value):
+
+        if value == 'ascending':
+            expression = 'created_at'
+        elif value == 'price_low_high':
+            expression = 'price'
+        elif value == 'price_high_low':
+            expression = '-price'
+        else:
+            expression = '-created_at'
+
+        return queryset.order_by(expression)
 
 
 # Resources:
 # Source1: https://github.com/Hopetree/izone/blob/master/apps/blog/templatetags/blog_tags.py
 # Source2: https://simpleisbetterthancomplex.com/tutorial/2016/11/28/how-to-filter-querysets-dynamically.html
 # Source3: https://etuannv.com/en/django-set-different-placeholders-for-rangefilter-or-datefromtorangefilter
+# Source4: https://www.youtube.com/watch?v=nle3u6Ww6Xk

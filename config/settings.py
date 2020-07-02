@@ -123,6 +123,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Debug toolbar
+
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+# Django filter
+FILTERS_EMPTY_CHOICE_LABEL = None
