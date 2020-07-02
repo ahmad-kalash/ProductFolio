@@ -12,4 +12,15 @@ class ProductListView(FilterView):
     template_name = 'products/product_list.html'
     paginate_by = 1
 
-    # TBD: solve pagination problem with filter
+    # Source: https://stackoverflow.com/questions/51389848/how-can-i-use-pagination-with-django-filter
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.GET:
+            query_dect = self.request.GET.copy()
+            # print(query_dect)
+            if self.request.GET.get('page'):
+                del query_dect['page']
+                # print(query_dect)
+            context['querystring'] = query_dect.urlencode()
+            # print(query_dect.urlencode())
+        return context
