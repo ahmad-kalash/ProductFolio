@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'debug_toolbar',
+    'apps.products',
 ]
 
 SITE_ID = 1
