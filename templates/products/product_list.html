@@ -1,0 +1,49 @@
+{# Copyright (c) 2020 by Abdullah Alnuaimi #}
+{# SPDX-License-Identifier: AGPL-3.0-or-later #}
+
+{% extends 'base.html' %}
+
+{% block title %}All Products - {{ block.super }}{% endblock %}
+
+{% block content %}
+
+    <div style="width: 200px; display: inline-block">
+        <form method="get">
+            {{ filter.form.as_p }}
+            <input type="submit" />
+        </form>
+    </div>
+
+    <div style="display: inline-block">
+
+        {% for product in object_list %}
+        <div>
+            <h3>
+                <a href="#">{{ product.name }}</a>
+            </h3>
+            <img src="{{ product.image.url }}" width="200" />
+            <div>
+                <span>{{ product.origin.name }}</span>,
+                <span>{{ product.type.name }}</span>,
+                <span>{{ product.area.area }}</span>,
+                <span>{{ product.color.name }}</span>,
+                <span>${{ product.price }}</span>,
+            </div>
+        </div>
+        {% empty %}
+        <p>No product found</p>
+        {% endfor %}
+
+        {% if is_paginated %}
+        <div style="margin-top: 10px">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">Previous</a> |
+            {% endif %}
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            {% endif %}
+        </div>
+        {% endif %}
+
+    </div>
+{% endblock %}
