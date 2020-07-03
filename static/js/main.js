@@ -31,8 +31,8 @@
 		Range Slider
 	--------------------- */
 	var rangeSlider = $(".price-range"),
-    minamount = $("#minamount"),
-    maxamount = $("#maxamount"),
+    minamount = $("#id_price_0"),
+    maxamount = $("#id_price_1"),
     minPrice = rangeSlider.data('min'),
     maxPrice = rangeSlider.data('max');
     rangeSlider.slider({
@@ -45,8 +45,6 @@
             maxamount.val(ui.values[1]);
         }
     });
-    minamount.val(rangeSlider.slider("values", 0));
-    maxamount.val(rangeSlider.slider("values", 1));
 
     /*-------------------
 		Nice Select

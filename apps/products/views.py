@@ -12,7 +12,7 @@ class ProductListView(FilterView):
     model = Product
     filterset_class = ProductFilter
     template_name = 'products/product_list.html'
-    paginate_by = 1
+    paginate_by = 9
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

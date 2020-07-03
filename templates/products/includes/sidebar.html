@@ -1,0 +1,37 @@
+{% load widget_tweaks %}
+
+<div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+    <form method="get">
+        {% for field in filter.form %}
+            {% if field.label != 'Name' and field.label != 'Sort By' %}
+                <div class="filter-widget">
+                    <h4 class="fw-title">{{ field.label }}</h4>
+                    {% if field.label == 'Price' %}
+                        <div class="filter-range-wrap">
+                            <div class="range-slider">
+                                <div class="price-input">
+                                    {% for input in field %}
+                                        {{ input.tag }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="price-range" data-min="30" data-max="120"></div>
+                        </div>
+                    {% else %}
+                    <div class="fw-brand-check">
+                        {% for choice in field %}
+                        <div class="bc-item">
+                            <label>
+                                {{ choice.tag }} {{ choice.choice_label }}
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+        <button type="submit" class="btn filter-btn">Filter</button>
+    </form>
+</div>

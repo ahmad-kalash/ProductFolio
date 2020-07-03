@@ -3,53 +3,56 @@
 
 {% extends 'base.html' %}
 
+{% load widget_tweaks %}
+
 {% block title %}All Products - {{ block.super }}{% endblock %}
 
 {% block content %}
+    <div class="row">
+        {% if object_list %}
+            {% include 'products/includes/sidebar.html' %}
+            <div class="col-lg-9 order-1 order-lg-2">
+                <div class="product-show-option">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <form method="get">
+                                {% if filter.form.ordering %}
+                                <div class="select-option">
+                                    <select name="ordering" id="ordering" class="sorting">
+                                        {% for option in filter.form.ordering %}
+                                            {{ option.tag }}
+                                        {% endfor %}
+                                    </select>
+                                    <button type="submit" class="btn filter-btn">Sort</button>
+                                </div>
+                                {% endif %}
+                            </form>
+                        </div>
+                        <div class="col-md-5 text-right d-none d-md-block">
+                            <p>Show 01- 09 Of 36 Product</p>
+                        </div>
+                    </div>
+                </div>
 
-    {% if object_list %}
-    <div style="width: 200px; display: inline-block">
-        <form method="get">
-            {{ filter.form.as_p }}
-            <input type="submit" />
-        </form>
-    </div>
-    {% endif %}
+                <div class="product-list">
+                    <div class="row">
+                        {% for product in object_list %}
+                            {% include 'products/includes/product.html' %}
+                        {% endfor %}
+                    </div>
+                </div>
 
-    <div style="display: inline-block">
+                {% if is_paginated %}
+                    {% if page_obj.has_next %}
+                    <div class="loading-more">
+                        <a href="?page={{ page_obj.next_page_number }}{% if querystring %}&amp;{{ querystring }}{% endif %}" title="Loading More">
+                            Loading More
+                        </a>
+                    </div>
+                    {% endif %}
+                {% endif %}
 
-        {% for product in object_list %}
-        <div>
-            <h3>
-                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-            </h3>
-            <img src="{{ product.image.url }}" width="200" />
-            <div>
-                <span>{{ product.origin.name }}</span>,
-                <span>{{ product.type.name }}</span>,
-                <span>{{ product.area.area }}</span>,
-                <span>{{ product.color.name }}</span>,
-                <span>${{ product.price }}</span>,
             </div>
-        </div>
-        {% empty %}
-        <p>No product found</p>
-        {% endfor %}
-
-        {% if is_paginated %}
-        <div style="margin-top: 10px">
-            {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}{% if querystring %}&amp;{{ querystring }}{% endif %}">
-                Previous
-            </a> |
-            {% endif %}
-            {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}{% if querystring %}&amp;{{ querystring }}{% endif %}">
-                Next
-            </a>
-            {% endif %}
-        </div>
         {% endif %}
-
     </div>
 {% endblock %}
