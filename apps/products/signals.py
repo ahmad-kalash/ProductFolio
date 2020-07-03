@@ -21,7 +21,7 @@ def delete_image_post_delete_receiver(sender, instance, *args, **kwargs):
 
 def delete_old_image_pre_save_receiver(sender, instance, *args, **kwargs):
     # Delete old image from media folder...
-    # ...When product has been updated.
+    # ...When product image has been updated.
     if not instance.id:
         return False
     else:
