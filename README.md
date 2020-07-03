@@ -19,26 +19,37 @@ Colorlib: https://colorlib.com
 ### Development
 
 1. Clone The Repository:
+
     ```
     git clone https://github.com/alnuaimi94/ProductFolio
     ```
+
 2. Change Directory:
+
     ```
     cd ProductFolio
     ````
+
 3. Create Virtualenv & Active it:
+
     ```
     python -m venv venv & venv\Scripts\activate
     ```
+
 4. Install PIP Requirements:
+
     ```
     pip install -r requirements.txt
     ```
+
 5. Migrate & Createsuperuser:
+
     ```
     python manage.py migrate & python manage.py createsuperuser
     ```
+
 6. Collectstatic & Runserver:
+
     ```
     python manage.py collectstatic & python manage.py runserver
     ````
