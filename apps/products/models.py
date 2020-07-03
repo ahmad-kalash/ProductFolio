@@ -4,6 +4,11 @@
 from django.db import models
 from django.urls import reverse_lazy
 
+from .signals import (
+    delete_image_post_delete_receiver,
+    delete_old_image_pre_save_receiver,
+)
+
 
 class ProductOrigin(models.Model):
     name = models.CharField(max_length=50, unique=True, help_text='eg: Spanish, Indian, Iraqi...')
@@ -69,3 +74,8 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse_lazy('products:detail', kwargs={'slug': self.slug})
+
+
+# Signals
+models.signals.post_delete.connect(delete_image_post_delete_receiver, sender=Product)
+models.signals.pre_save.connect(delete_old_image_pre_save_receiver, sender=Product)
