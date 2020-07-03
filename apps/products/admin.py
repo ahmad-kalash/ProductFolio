@@ -11,7 +11,12 @@ from .models import (
     ProductType,
 )
 
-admin.site.register(Product)
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    exclude = ['slug']
+
+
 admin.site.register(ProductArea)
 admin.site.register(ProductColor)
 admin.site.register(ProductOrigin)

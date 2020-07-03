@@ -1,6 +1,6 @@
 import os
 
-from django.db.models.signals import post_delete, pre_save
+from django.utils.text import slugify
 
 
 def _delete_file(path):
@@ -24,15 +24,36 @@ def delete_old_image_pre_save_receiver(sender, instance, *args, **kwargs):
     else:
         try:
             old_image = sender.objects.get(pk=instance.pk).image
-            print(old_image)
+            # print(old_image)
         except sender.DoesNotExist:
             return False
         
         new_image = instance.image
-        print(new_image)
+        # print(new_image)
 
         if old_image != new_image:
             _delete_file(old_image.path)
+
+
+def generate_slug_pre_save_receiver(sender, instance, *args, **kwargs):
+    # Generate auto product slug...
+    # ...When product has been created or...
+    # ...When product name has been updated
+    if not instance.id:
+        instance.slug = slugify(instance.name)
+    else:
+        try:
+            old_slug = sender.objects.get(pk=instance.pk).slug
+            # print('old slug: ' + old_slug)
+        except sender.DoesNotExist:
+            return False
+        
+        new_slug = slugify(instance.name)
+        # print('new slug: ' + new_slug)
+
+        if old_slug != new_slug:
+            instance.slug = new_slug
+            # print(instance.slug)
 
 
 # Resources:

@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from .signals import (
     delete_image_post_delete_receiver,
     delete_old_image_pre_save_receiver,
+    generate_slug_pre_save_receiver,
 )
 
 
@@ -79,3 +80,4 @@ class Product(models.Model):
 # Signals
 models.signals.post_delete.connect(delete_image_post_delete_receiver, sender=Product)
 models.signals.pre_save.connect(delete_old_image_pre_save_receiver, sender=Product)
+models.signals.pre_save.connect(generate_slug_pre_save_receiver, sender=Product)
