@@ -39,7 +39,7 @@ Colorlib: https://colorlib.com
 4. Install PIP Requirements:
 
     ```
-    pip install -r requirements.txt
+    pip install -r requirements-dev.txt
     ```
 
 5. Migrate & Createsuperuser:
@@ -62,7 +62,7 @@ Colorlib: https://colorlib.com
 
 #### Detail Page
 
-![alt text](https://github.com/alnuaimi94/ProductFolio/blob/master/_screenshots/detail.png)
+![alt text](https://github.com/alnuaimi94/ProductFolio/blob/master/_screenshots/detail1.png)
 
 #### About Page
 
