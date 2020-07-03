@@ -7,12 +7,14 @@
 
 {% block content %}
 
+    {% if object_list %}
     <div style="width: 200px; display: inline-block">
         <form method="get">
             {{ filter.form.as_p }}
             <input type="submit" />
         </form>
     </div>
+    {% endif %}
 
     <div style="display: inline-block">
 

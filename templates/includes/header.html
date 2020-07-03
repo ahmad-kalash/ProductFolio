@@ -1,0 +1,64 @@
+{% load static %}
+
+<header class="header-section">
+    <div class="header-top">
+        <div class="container">
+            <div class="ht-left">
+                <div class="mail-service">
+                    <i class="fa fa-envelope"></i>
+                    <span>hello.colorlib@gmail.com</span>
+                </div>
+                <div class="phone-service">
+                    <i class="fa fa-phone"></i>
+                    <span>+65 11.188.888</span>
+                </div>
+            </div>
+            <div class="ht-right">
+                {% if user.is_staff or user.is_superuser %}
+                <a href="{% url 'admin:index' %}" class="login-panel" target="_blank">
+                    <i class="fa fa-dashboard"></i>Dashboard
+                </a>
+                {% endif %}
+                <div class="top-social">
+                    <a href="#" title="Facebook"><i class="fa fa-facebook"></i></a>
+                    <a href="#" title="Twitter"><i class="fa fa-twitter"></i></a>
+                    <a href="#" title="Instagram"><i class="fa fa-instagram"></i></a>
+                    <a href="#" title="Pinterest"><i class="fa fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="inner-header">
+            <div class="row">
+                <div class="col-4 col-md-6">
+                    <div class="logo">
+                        <a href="{% url 'products:list' %}" title="Fashi">
+                            <img src="{% static 'img/logo.png' %}" alt="Fashi Logo" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-8 col-md-6">
+                    <div class="advanced-search">
+                        <form action="#" class="input-group">
+                            <input type="text" placeholder="Search Products Here..." />
+                            <button type="button"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav-item">
+        <div class="container">
+            <nav class="nav-menu mobile-menu">
+                <ul>
+                    <li><a href="{% url 'products:list' %}" title="Home">Home</a></li>
+                    <li><a href="#" title="About">About</a></li>
+                    <li><a href="#" title="Contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </div>
+</header>
