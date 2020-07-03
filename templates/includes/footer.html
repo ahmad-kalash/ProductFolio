@@ -1,4 +1,9 @@
-{% load static %}
+{# Copyright (c) 2020 by Abdullah Alnuaimi #}
+{# SPDX-License-Identifier: AGPL-3.0-or-later #}
+
+{% load static flatpages %}
+
+{% get_flatpages as flatpages %}
 
 <footer class="footer-section">
     <div class="container">
@@ -27,7 +32,11 @@
                 <div class="footer-widget">
                     <h5>Information</h5>
                     <ul>
-                        <li><a href="#" title="About Us">About Us</a></li>
+                        {% for page in flatpages %}
+                        <li>
+                            <a href="/pages{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a>
+                        </li>
+                        {% endfor %}
                         <li><a href="#" title="Contact">Contact</a></li>
                     </ul>
                 </div>

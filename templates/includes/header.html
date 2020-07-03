@@ -1,4 +1,9 @@
-{% load static %}
+{# Copyright (c) 2020 by Abdullah Alnuaimi #}
+{# SPDX-License-Identifier: AGPL-3.0-or-later #}
+
+{% load static flatpages %}
+
+{% get_flatpages as flatpages %}
 
 <header class="header-section">
     <div class="header-top">
@@ -54,7 +59,11 @@
             <nav class="nav-menu mobile-menu">
                 <ul>
                     <li><a href="{% url 'products:list' %}" title="Home">Home</a></li>
-                    <li><a href="#" title="About">About</a></li>
+                    {% for page in flatpages %}
+                    <li>
+                        <a href="/pages{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a>
+                    </li>
+                    {% endfor %}
                     <li><a href="#" title="Contact">Contact</a></li>
                 </ul>
             </nav>

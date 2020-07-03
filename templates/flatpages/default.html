@@ -1,0 +1,12 @@
+{# Copyright (c) 2020 by Abdullah Alnuaimi #}
+{# SPDX-License-Identifier: AGPL-3.0-or-later #}
+
+{% extends 'base.html' %}
+
+{% block title %}{{ flatpage.title }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div>
+        {{ flatpage.content }}
+    </div>
+{% endblock %}
