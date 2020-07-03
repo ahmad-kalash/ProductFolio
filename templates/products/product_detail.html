@@ -6,15 +6,33 @@
 {% block title %}{{ product.name }} - {{ block.super }}{% endblock %}
 
 {% block content %}
-    <div>
-        <h3>{{ product.name }}</h3>
-        <img src="{{ product.image.url }}" width="200" />
-        <div>
-            <span>{{ product.origin.name }}</span>,
-            <span>{{ product.type.name }}</span>,
-            <span>{{ product.area.area }}</span>,
-            <span>{{ product.color.name }}</span>,
-            <span>${{ product.price }}</span>,
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="product-pic-zoom">
+                <img class="product-big-img" src="{{ product.image.url }}" alt="Product Image" />
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="product-details">
+                <div class="pd-title">
+                    <h3>{{ product.name }}</h3>
+                </div>
+                <div class="pd-desc">
+                    <p>{{ product.description }}</p>
+                    <h4>
+                        ${{ product.price }}
+                        {% if product.old_price %}
+                        <span>${{ product.old_price }}</span>
+                        {% endif %}
+                    </h4>
+                </div>
+                <ul class="pd-tags">
+                    <li><span>ORIGIN</span>: {{ product.origin.name }}</li>
+                    <li><span>TYPE</span>: {{ product.type.name }}</li>
+                    <li><span>AREA</span>: {{ product.area }}</li>
+                    <li><span>COLOR</span>: {{ product.color.name }}</li>
+                </ul>
+            </div>
         </div>
     </div>
 {% endblock %}

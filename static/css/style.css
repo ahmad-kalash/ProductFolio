@@ -1537,6 +1537,8 @@ ol {
 }
 
 .product-details .pd-desc p {
+	font-size: 17px;
+	line-height: 1.7;
 	color: #636363;
 }
 
@@ -1551,7 +1553,7 @@ ol {
 	color: #b7b7b7;
 	text-decoration: line-through;
 	display: inline-block;
-	margin-left: 13px;
+	margin-left: 5px;
 }
 
 .product-details .pd-color {
@@ -1682,9 +1684,9 @@ ol {
 
 .product-details .pd-tags li {
 	list-style: none;
-	font-size: 16px;
+	font-size: 17px;
 	color: #636363;
-	line-height: 30px;
+	line-height: 40px;
 }
 
 .product-details .pd-tags li span {
