@@ -41,7 +41,7 @@
                 <div class="col-8 col-md-6">
                     <div class="advanced-search">
                         <form action="{% url 'products:list' %}" class="input-group">
-                            <input type="search" name="name" id="name" value="{{ request.GET.name }}" placeholder="Search Product Name Here..." />
+                            <input type="search" name="search" id="search" value="{{ request.GET.search }}" placeholder="Search Product Name Here..." />
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
                     </div>

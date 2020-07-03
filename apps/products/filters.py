@@ -4,6 +4,7 @@
 from django import forms
 
 from django_filters import (
+    CharFilter,
     ChoiceFilter,
     FilterSet,
     ModelMultipleChoiceFilter,
@@ -39,6 +40,8 @@ class ProductFilter(FilterSet):
         ('price_low_high', 'Price: Low to High'),
         ('price_high_low', 'Price: High to Low'),
     )
+
+    search = CharFilter(field_name='name', label='Name', lookup_expr='icontains')
 
     price = RangeFilter(
         field_name='price',
