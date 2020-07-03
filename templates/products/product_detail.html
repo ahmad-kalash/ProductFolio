@@ -5,6 +5,17 @@
 
 {% block title %}{{ product.name }} - {{ block.super }}{% endblock %}
 
+{% block breadcrumb %}
+<div class="breacrumb-section">
+    <div class="container">
+        <div class="breadcrumb-text product-more">
+            <a href="{% url 'products:list' %}"><i class="fa fa-home"></i> Home</a>
+            <span>{{ product.name }}</span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
 {% block content %}
     <div class="row">
         <div class="col-lg-6">

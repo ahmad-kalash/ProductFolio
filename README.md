@@ -63,3 +63,7 @@ Colorlib: https://colorlib.com
 #### Detail Page
 
 ![alt text](https://github.com/alnuaimi94/ProductFolio/blob/master/_screenshots/detail.png)
+
+#### About Page
+
+![alt text](https://github.com/alnuaimi94/ProductFolio/blob/master/_screenshots/about.png)
