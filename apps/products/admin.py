@@ -1,5 +1,5 @@
 # Copyright (c) 2020 by Abdullah Alnuaimi
-# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-License-Identifier: MIT
 
 from django.contrib import admin
 
