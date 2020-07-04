@@ -187,25 +187,25 @@ class Production(Base):
     SECRET_KEY = config('SECRET_KEY')
     ALLOWED_HOSTS = ['fashis.herokuapp.com']
 
-    ADMIN_URL = config("ADMIN_URL")
+    ADMIN_URL = config('ADMIN_URL')
 
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
         }
     }
 
     import dj_database_url
 
-    DATABASES["default"] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
     # This is required for Heroku SSL.
-    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
     # Stream logging to stdout: use `heroku log` to view
     LOGGING = {
-        "version": 1,
-        "disable_existing_loggers": False,
-        "handlers": {"console": {"class": "logging.StreamHandler"}},
-        "loggers": {"root": {"handlers": ["console"], "level": "INFO"}},
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {'console': {'class': 'logging.StreamHandler'}},
+        'loggers': {'root': {'handlers': ['console'], 'level': 'INFO'}},
     }
