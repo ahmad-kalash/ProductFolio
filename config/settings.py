@@ -39,10 +39,12 @@ class Base(Configuration):
 
     MIDDLEWARE = [
         'django.middleware.security.SecurityMiddleware',
+        'whitenoise.middleware.WhiteNoiseMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
         'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.middleware.gzip.GZipMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
     ]
@@ -178,4 +180,32 @@ class Local(Base):
 
 
 class Production(Base):
-    pass
+
+    from decouple import config
+
+    DEBUG = False
+    SECRET_KEY = config('SECRET_KEY')
+    ALLOWED_HOSTS = ['fashis.herokuapp.com']
+
+    ADMIN_URL = config("ADMIN_URL")
+
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+        }
+    }
+
+    import dj_database_url
+
+    DATABASES["default"] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+    # This is required for Heroku SSL.
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+    # Stream logging to stdout: use `heroku log` to view
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "handlers": {"console": {"class": "logging.StreamHandler"}},
+        "loggers": {"root": {"handlers": ["console"], "level": "INFO"}},
+    }

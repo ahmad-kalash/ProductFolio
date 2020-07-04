@@ -42,13 +42,15 @@ Colorlib: https://colorlib.com
     pip install -r requirements-dev.txt
     ```
 
-5. Migrate & Createsuperuser:
+5. Set DJANGO_CONFIGURATION as a 'Local' instead of 'Production' in asgi.py, wsgi.py and manage.py files
+
+6. Migrate & Createsuperuser:
 
     ```
     python manage.py migrate & python manage.py createsuperuser
     ```
 
-6. Collectstatic & Runserver:
+7. Collectstatic & Runserver:
 
     ```
     python manage.py collectstatic & python manage.py runserver

@@ -13,8 +13,19 @@ https://docs.djangoproject.com/en/3.0/howto/deployment/asgi/
 import os
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
-os.environ.setdefault('DJANGO_CONFIGURATION', 'Local')
+os.environ.setdefault('DJANGO_CONFIGURATION', 'Production')
 
-from django.core.asgi import get_asgi_application
+# Use this until https://github.com/jazzband/django-configurations/pull/251 is merged
+from configurations import importer
+
+importer.install()
+
+try:
+    from django.core.asgi import get_asgi_application
+except ImportError:
+    from django.core.handlers.asgi import ASGIHandler
+
+    def get_asgi_application():
+        return ASGIHandler()
 
 application = get_asgi_application()

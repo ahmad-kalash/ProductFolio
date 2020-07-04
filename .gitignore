@@ -4,5 +4,6 @@ __pycache__
 venv
 staticfiles
 media
+.env
 
 db.sqlite3
