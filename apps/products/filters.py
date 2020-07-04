@@ -58,7 +58,7 @@ class ProductFilter(FilterSet):
                 # 'type', 'range',
                 'min': '30',
                 'max': '120',
-                # 'readonly': 'true',
+                'readonly': 'true',
             }
         )
     )
