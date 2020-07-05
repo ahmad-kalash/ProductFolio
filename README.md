@@ -44,13 +44,19 @@ Colorlib: https://colorlib.com
 
 5. Set DJANGO_CONFIGURATION as a 'Local' instead of 'Production' in asgi.py, wsgi.py and manage.py files
 
-6. Migrate & Createsuperuser:
+6. Create .env file in the root of the project and set:
+    ```
+    SECRET_KEY=somethingHere
+    ADMIN_URL=somethingHere/
+    ```
+
+7. Migrate & Createsuperuser:
 
     ```
     python manage.py migrate & python manage.py createsuperuser
     ```
 
-7. Collectstatic & Runserver:
+8. Collectstatic & Runserver:
 
     ```
     python manage.py collectstatic & python manage.py runserver
